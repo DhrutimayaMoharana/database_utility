@@ -16,8 +16,9 @@ public class ConfigurationController {
 	@Autowired
 	private ConfigurationService configurationService;
 	
-	@GetMapping("/get/all")
+	@GetMapping("/fetch/all/information")
 	public ResponseEntity<?> findAll(){
-		return new ResponseEntity<>(configurationService.fetchAndDeleteDataFromTable(), HttpStatus.OK);
+		configurationService.fetchForFirstTimeFromDB();
+		return new ResponseEntity<>("Successfully Fetched", HttpStatus.OK);
 	}
 }

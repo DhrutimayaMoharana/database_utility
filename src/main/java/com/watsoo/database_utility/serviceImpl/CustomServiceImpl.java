@@ -44,8 +44,11 @@ public class CustomServiceImpl implements CustomService {
 			String date = DateUtil.getDateAfterSomeDay(new Date(), configuration.getNoOfDays());
 			System.out.println(date);
 
+//			String sql = "SELECT * FROM " + configuration.getTableName() + " WHERE DATE("
+//			+ configuration.getColumnName() + ")<='" + date + "' ORDER BY id DESC LIMIT 1";
+
 			String sql = "SELECT * FROM " + configuration.getTableName() + " WHERE DATE("
-					+ configuration.getColumnName() + ")<='" + date + "' ORDER BY id DESC LIMIT 1";
+					+ configuration.getColumnName() + ")>='" + date + "' ORDER BY id ASC LIMIT 1";
 
 			return jdbcTemplate.queryForMap(sql);
 		} catch (Exception e) {
@@ -73,7 +76,10 @@ public class CustomServiceImpl implements CustomService {
 
 			connection = jdbcTemplate.getDataSource().getConnection();
 
-			String sql = "DELETE FROM " + configuration.getTableName() + " WHERE id <=" + configuration.getLargestId()
+//			String sql = "DELETE FROM " + configuration.getTableName() + " WHERE id <=" + configuration.getLargestId()
+//			+ " LIMIT " + configuration.getBatchSize();
+
+			String sql = "DELETE FROM " + configuration.getTableName() + " WHERE id <" + configuration.getLargestId()
 					+ " LIMIT " + configuration.getBatchSize();
 
 			int rowsAffected = jdbcTemplate.update(sql);

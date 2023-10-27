@@ -4,4 +4,6 @@ public interface ConfigurationService {
 
 	Object fetchAndDeleteDataFromTable();
 
+	void fetchForFirstTimeFromDB();
+
 }

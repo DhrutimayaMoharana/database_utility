@@ -33,6 +33,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	public List<Configuration> configurationList = new ArrayList<>();
 
 	@PostConstruct
+	@Override
 	public void fetchForFirstTimeFromDB() {
 		Map<String, JdbcTemplate> databaseWiseJdbcTemplate = new HashMap<>();
 		List<Configuration> dbConfigurations = configurationRepository.findAllActiveInfo();
