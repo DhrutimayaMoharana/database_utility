@@ -94,6 +94,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 							System.out.println("------------Update Data---------------" + configuration.getIpAddress()
 									+ " :::: " + configuration.getDatabaseName() + " :::: "
 									+ configuration.getTableName());
+							System.out.println(Long.parseLong(response.get("id").toString()));
 							configuration.setLastFetchedDate(todaysDate);
 							configuration.setLargestId(Long.parseLong(response.get("id").toString()));
 							configurationRepository.updateLastFetchedDateAndLargestId(configuration.getId(),
